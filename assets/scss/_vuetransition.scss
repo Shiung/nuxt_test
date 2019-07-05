@@ -1,0 +1,171 @@
+// fade
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.fade-enter-to,
+.fade-leave {
+  opacity: 1;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 1s;
+}
+
+//scale
+.scale-enter,
+.scale-leave-to {
+  opacity: 0;
+  transform: scale(0);
+}
+
+.scale-enter-to,
+.scale-leave {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.scale-enter-active,
+.scale-leave-active {
+  transition: .5s;
+}
+
+// page // defaut nuxt 頁面轉換
+.page-enter,
+.page-leave-to {
+  opacity: 0;
+  // transform: translateY(50px);
+}
+
+.page-enter-to,
+.page-leave {
+  opacity: 1;
+  // transform: translateY(0);
+}
+
+.page-enter-active,
+.page-leave-active {
+  transition: 1s;
+}
+
+
+//selectOption
+.selectOption-enter,
+.selectOption-leave-to {
+  opacity: 0;
+  transform: translateY(5px);
+}
+
+.selectOption-enter-to,
+.selectOption-leave {
+  opacity: 1;
+  transform: translateY(0px);
+}
+
+.selectOption-enter-active,
+.selectOption-leave-active {
+  transition: .3s ;
+}
+
+
+// navShow
+.navShow-enter,
+.navShow-leave-to {
+  transform-origin: top;
+  transform: scaleY(0);
+  opacity: 0;
+}
+
+.navShow-enter-to,
+.navShow-leave {
+  transform-origin: top;
+  opacity: 1;
+  transform: scaleY(1);
+}
+
+.navShow-enter-active,
+.navShow-leave-active {
+  transition: transform .3s ,opacity .2s ;
+  transform-origin: top;
+}
+
+
+// rwdMenu
+.rwdMenu-enter,
+.rwdMenu-leave-to {
+  transform-origin: left;
+  transform: translateX(-100%);
+  opacity: 0;
+}
+
+.rwdMenu-enter-to,
+.rwdMenu-leave {
+  transform-origin: left;
+  opacity: 1;
+  transform: translateX(0%);
+}
+
+.rwdMenu-enter-active,
+.rwdMenu-leave-active {
+  transition: .5s  ;
+  transform-origin: left;
+}
+
+// returnBack
+.returnBack-enter,
+.returnBack-leave-to {
+  // left: -50px;
+  transform: translateX(-100%);
+  opacity: 0;
+}
+
+.returnBack-enter-to,
+.returnBack-leave {
+  transform: translateX(0%);
+  opacity: 1;
+  // left: 0;
+}
+
+.returnBack-enter-active,
+.returnBack-leave-active {
+  transition: .5s  ;
+}
+
+
+//gotopOption
+.gotopOption-enter,
+.gotopOption-leave-to {
+  // left: -50px;
+  transform: translateY(100%);
+  opacity: 0;
+}
+
+.gotopOption-enter-to,
+.gotopOption-leave {
+  transform: translateY(0%);
+  opacity: 1;
+  // left: 0;
+}
+
+.gotopOption-enter-active,
+.gotopOption-leave-active {
+  transition: .5s  ;
+}
+
+//maxHeight100
+.maxHeight100-enter,
+.maxHeight100-leave-to {
+  max-height: 0;
+}
+
+.maxHeight100-enter-to,
+.maxHeight100-leave {
+  max-height: 100px;
+}
+
+.maxHeight100-enter-active,
+.maxHeight100-leave-active {
+  transition: .5s  ;
+}

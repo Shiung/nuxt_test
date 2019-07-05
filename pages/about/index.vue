@@ -8,8 +8,20 @@
     </div>
 </template>
 
+<script>
+export default {
+    head: {
+      title: 'about title'  
+    },
+    mounted() {
+      console.log(process.env.baseUrl)  
+      console.log(this)
+    },
+}
+</script>
+
 <style lang="scss" scoped>
 .about_page{
-
+    color:$blue;
 }
 </style>

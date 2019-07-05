@@ -17,8 +17,7 @@
 import { mapGetters } from 'vuex'
 export default {
     components: {
-        PostList: () => import('@/components/Posts/PostList'),
-        AppButton: () => import('@/components/UI/AppButton')
+        PostList: () => import('@/components/Posts/PostList')
     },
     computed: {
         ...mapGetters(['loadedPostAPI'])

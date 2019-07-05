@@ -1,6 +1,6 @@
 
 module.exports = {
-  mode: 'universal',
+  mode: 'universal', //'spa',
   /*
   ** Headers of the page
   */
@@ -19,6 +19,12 @@ module.exports = {
   ** Customize the progress-bar color
   */
   loading: { color: '#f00' },
+  // 僅限spa 模式使用
+  loadingIndicator: {
+    name: 'circle',
+    color: '#3B8070',
+    background: '#f00'
+  },
   /*
   ** Global CSS
   */
@@ -29,12 +35,26 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
+    '~plugins/core-components.js',
+    '~plugins/data-filter.js',
+    '~plugins/axios.js'
   ],
   /*
   ** Nuxt.js modules
   */
   modules: [
+    '@nuxtjs/axios',
+    '@nuxtjs/style-resources'
   ],
+  axios: {
+    baseURL: 'https://nuxt-learn2-api.firebaseio.com',
+    credentials: false // auth驗證 cookie
+  },
+  styleResources: {
+    scss: [
+      './assets/scss/_variables.scss'
+    ]
+  },
   /*
   ** Build configuration
   */
@@ -43,9 +63,27 @@ module.exports = {
     ** You can extend webpack config here
     */
     extend(config, ctx) {
-    },
-    styleResources: {
-      scss: './assets/scss/_variables.scss'
-    } 
-  }
+    }
+  },
+  env: {
+    baseUrl: process.env.BASE_URL || 'http://localhost:3000'
+  },
+  // rootDir: '/my-app/'
+  // srcDir: 'client/'
+  // server 環境
+  // server: {
+  //   port: 8000, // default: 3000
+  //   host: '0.0.0.0', // default: localhost
+  // },
+  // router 客製化
+  // router: {
+  //   // base: '/my-app/' // 設定sub-domain
+  //   // extendRoutes (routes, resolve) {
+  //   //   routes.push({
+  //   //     name: '',
+  //   //     path: '',
+  //   //     component: resolve(__dirname, '')
+  //   //   })
+  //   // }
+  // }
 }

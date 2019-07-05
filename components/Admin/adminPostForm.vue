@@ -26,10 +26,6 @@ export default {
             type: Object
         }
     },
-    components: {
-        AppControlInput: () => import('@/components/UI/AppControlInput'),
-        AppButton: () => import('@/components/UI/AppButton')
-    },
     data () {
         return {
             editedPost: this.post

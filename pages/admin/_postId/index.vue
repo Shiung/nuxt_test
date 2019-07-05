@@ -25,10 +25,11 @@ export default {
     //     }
     // }
     asyncData(context) {
-        return axios.get(`https://nuxt-learn2-api.firebaseio.com/posts/${context.params.postId}.json`)
-            .then(res => {
-                return res.data
-                    ? { loadedPost: res.data }
+        // return axios.get(`https://nuxt-learn2-api.firebaseio.com/posts/${context.params.postId}.json`)
+        return context.app.$axios.$get(`/posts/${context.params.postId}.json`)
+            .then(data => {
+                return data
+                    ? { loadedPost: data }
                     : {
                         loadedPost: {
                             id: 1,

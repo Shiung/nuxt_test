@@ -22,12 +22,13 @@ const createStore = () => {
         actions: {
             // inital 抓取資料
             async nuxtServerInit(vuexContext, context) {
-                await axios.get('https://nuxt-learn2-api.firebaseio.com/posts.json')
-                    .then(res => {
+                // await axios.get('https://nuxt-learn2-api.firebaseio.com/posts.json')
+                await context.app.$axios.$get('/posts.json')
+                    .then(data => {
                         let arr = []
-                        for (let key in res.data) {
+                        for (let key in data) {
                             arr.push({
-                                ...res.data[key],
+                                ...data[key],
                                 id: key
                             })
                         }
