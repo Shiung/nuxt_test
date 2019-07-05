@@ -18,8 +18,10 @@ export default {
     name: 'PostPreview',
     props: {
         idProps: {
-            type: Number,
-            default: 0
+            // type: Number,
+            // default: 0
+            type: String,
+            required: true
         },
         title: {
             type: String,

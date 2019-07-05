@@ -1,6 +1,6 @@
 <template>
     <div class="post_page">
-        <postlist :postList='loadedPost'/>
+        <postlist :postList='loadedPostAPI'/>
     </div>
 </template>
 
@@ -80,7 +80,7 @@ export default {
     //     })
     // },
     computed: {
-        ...mapGetters(['loadedPost'])
+        ...mapGetters(['loadedPost', 'loadedPostAPI'])
     }
 }
 </script>

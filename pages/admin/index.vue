@@ -8,16 +8,20 @@
         </section> 
         <section class="existing-post">
             <h1>Exsiting Post</h1>
-            <PostList :isAdmin='true'/>
+            <PostList :postList='loadedPostAPI' :isAdmin='true'/>
         </section> 
     </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
     components: {
         PostList: () => import('@/components/Posts/PostList'),
         AppButton: () => import('@/components/UI/AppButton')
+    },
+    computed: {
+        ...mapGetters(['loadedPostAPI'])
     }
 }
 </script>
