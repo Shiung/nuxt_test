@@ -131,7 +131,7 @@ const createStore = () => {
             initAuth(context, req) {
                 let token
                 let expirationDate
-                console.log(req)
+                // console.log(req) // req 狀態只有在server side 狀態會有
                 if (req) {
                     // server 
                     console.log('server side')
