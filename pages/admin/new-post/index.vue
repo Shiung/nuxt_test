@@ -7,19 +7,25 @@
 </template>
 
 <script>
-import axios from 'axios'
+// import axios from 'axios'
+import { mapActions } from 'vuex'
 export default {
     components: {
         adminPostForm: () => import('@/components/Admin/adminPostForm')
     },
     methods: {
+        ...mapActions(['add_post_api']),
         onSubmitted (val) {
-            let apiUrl = 'https://nuxt-learn2-api.firebaseio.com/posts.json'
-            let data = { ...val, updatedDate: new Date() }
-            axios
-                .post(apiUrl, data)
-                .then(result => console.log('axios', result))
-                .catch(e => console.log(e))           
+            // let apiUrl = 'https://nuxt-learn2-api.firebaseio.com/posts.json'
+            // let data = { ...val, updatedDate: new Date() }
+            // axios
+            //     .post(apiUrl, data)
+            //     .then(result => console.log('axios', result))
+            //     .catch(e => console.log(e))
+            this.add_post_api(val)
+                .then(() => {
+                    this.$router.push('/admin')
+                })
         }
     }
 }

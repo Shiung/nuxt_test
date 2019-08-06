@@ -16,7 +16,7 @@
   </template>
   
   <script>
-  
+  import { mapActions } from 'vuex'
   export default {
     name: 'AdminAuthPage',
     data() {
@@ -27,20 +27,29 @@
       }
     },
     methods: {
+      ...mapActions(['authenticateUser']),
       onSubmit () {
-        let authUrl = this.isLogin
-          ? `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${process.env.firebaseAPIKey}`
-          : `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${process.env.firebaseAPIKey}`
-        console.log(authUrl)  
-        // 註冊 https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=[API_KEY] from firebase auth rest api document
-        // 登入 https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=[API_KEY] from firebase auth rest api document
-        this.$axios.$post( authUrl, {
+        // let authUrl = this.isLogin
+        //   ? `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${process.env.firebaseAPIKey}`
+        //   : `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${process.env.firebaseAPIKey}`
+        // console.log(authUrl)  
+        // // 註冊 https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=[API_KEY] from firebase auth rest api document
+        // // 登入 https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=[API_KEY] from firebase auth rest api document
+        // this.$axios.$post( authUrl, {
+        //   email: this.email,
+        //   password: this.password,
+        //   returnSecureToken: true
+        // }).then(result => {
+        //   console.log(result)
+        // }).catch(e => console.log(e))
+        this.authenticateUser({
+          isLogin: this.isLogin,
           email: this.email,
-          password: this.password,
-          returnSecureToken: true
-        }).then(result => {
-          console.log(result)
-        }).catch(e => console.log(e))
+          password: this.password
+        })
+        .then(() => {
+          this.$router.push('/admin')
+        })
       }
     }
   }
