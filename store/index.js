@@ -155,11 +155,23 @@ const createStore = () => {
                 
                 if (new Date().getTime() > Number.parseInt(expirationDate) || !token) {
                     console.log('No token or invalid token')
-                    context.commit('clearToken')
+                    // context.commit('clearToken')
+                    context.dispatch('logout')
                     return
                 }
                 // context.dispatch('setLogoutTimer', +expirationDate - new Date().getTime())
                 context.commit('setToken', token)
+            },
+            logout (context) {
+                context.commit('clearToken')
+                // 移除token cookie
+                Cookie.remove('jwtNuxt')
+                Cookie.remove('expirationDateNuxt')
+                // 移除token localstorage
+                if (process.client) { // 確保不是在server side 執行
+                    localStorage.removeItem(context.state.tokenKey)
+                    localStorage.removeItem(context.state.tokenExpiresKsy)
+                }
             }
         },
         getters: {

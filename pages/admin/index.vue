@@ -5,6 +5,10 @@
                 style="margin-top:10px;"
                 @click="$router.push('/admin/new-post')"
             >Create Post</AppButton>
+            <AppButton 
+                style="margin-top:10px;"
+                @click="onlogout"
+            >Logout</AppButton>
         </section> 
         <section class="existing-post">
             <h1>Exsiting Post</h1>
@@ -14,7 +18,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 export default {
     middleware: ['check-auth', 'auth'],
     components: {
@@ -22,6 +26,13 @@ export default {
     },
     computed: {
         ...mapGetters(['loadedPostAPI'])
+    },
+    methods: {
+        ...mapActions(['logout']),
+        onlogout () {
+            this.logout()
+            this.$router.push('/admin/auth')
+        }
     }
 }
 </script>
