@@ -113,7 +113,8 @@ const createStore = () => {
         },
         getters: {
             loadedPost: state => state.loadedPost,
-            loadedPostAPI: state => state.loadedPostAPI
+            loadedPostAPI: state => state.loadedPostAPI,
+            isAuthenticated: state => state.token !== null
         }
     })
 }

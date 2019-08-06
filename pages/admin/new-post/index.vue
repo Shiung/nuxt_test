@@ -10,6 +10,7 @@
 // import axios from 'axios'
 import { mapActions } from 'vuex'
 export default {
+    middleware: ['auth'],
     components: {
         adminPostForm: () => import('@/components/Admin/adminPostForm')
     },

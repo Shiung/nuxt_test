@@ -16,6 +16,7 @@
 <script>
 import { mapGetters } from 'vuex'
 export default {
+    middleware: ['auth'],
     components: {
         PostList: () => import('@/components/Posts/PostList')
     },
