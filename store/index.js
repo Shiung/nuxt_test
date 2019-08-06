@@ -1,5 +1,6 @@
 import Vuex from 'vuex'
 import axios from 'axios'
+import Cookie from "js-cookie";
 
 const createStore = () => {
     return new Vuex.Store({
@@ -113,10 +114,13 @@ const createStore = () => {
                     returnSecureToken: true
                 }).then(result => {
                     context.commit('setToken', result.idToken)
-                    // 儲存 localstorage
+                    // 儲存 localstorage 會有server side 抓不到localstorage的問題
                     localStorage.setItem(context.state.tokenKey, result.idToken)
                     localStorage.setItem(context.state.tokenExpiresKsy, new Date().getTime() + result.expiresIn * 1000 )
                     context.dispatch('setLogoutTimer', result.expiresIn * 1000) // firebase feedback expiretimer 是秒為單位 要轉為毫秒
+                    // 使用cookie 沒有serverside 問題
+                    Cookie.set('jwtNuxt', result.idToken)
+                    Cookie.set('expirationDateNuxt', new Date().getTime() + Number.parseInt(result.expiresIn) * 1000)
                 }).catch(e => console.log(e))
             },
             setLogoutTimer(context, duration) {
@@ -124,11 +128,37 @@ const createStore = () => {
                   context.commit("clearToken");
                 }, duration)
             },
-            initAuth(context) {
-                const token = localStorage.getItem(context.state.tokenKey)
-                const expirationDate = localStorage.getItem(context.state.tokenExpiresKsy)
-                if (new Date().getTime() > +expirationDate || !token) return
-                context.dispatch('setLogoutTimer', +expirationDate - new Date().getTime())
+            initAuth(context, req) {
+                let token
+                let expirationDate
+                console.log(req)
+                if (req) {
+                    // server 
+                    console.log('server side')
+                    if (!req.headers.cookie) return
+                    const jwtCookie = req.headers.cookie
+                        .split(';')
+                        .find(c => c.trim().startsWith("jwtNuxt="))
+                    if (!jwtCookie) return
+                    token = jwtCookie.split('=')[1]
+                    expirationDate = req.headers.cookie
+                        .split(';')
+                        .find(c => c.trim().startsWith('expirationDateNuxt='))
+                        .split('=')[1]
+                } else {
+                    // client
+                    console.log('clent side')
+                    // localstorage 會有server side 抓不到localstorage的問題
+                    token = localStorage.getItem(context.state.tokenKey)
+                    expirationDate = localStorage.getItem(context.state.tokenExpiresKsy)
+                }
+                
+                if (new Date().getTime() > +expirationDate || !token) {
+                    console.log('No token or invalid token')
+                    context.commit('clearToken')
+                    return
+                }
+                // context.dispatch('setLogoutTimer', +expirationDate - new Date().getTime())
                 context.commit('setToken', token)
             }
         },
