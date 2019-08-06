@@ -66,7 +66,8 @@ module.exports = {
     }
   },
   env: {
-    baseUrl: process.env.BASE_URL || 'http://localhost:3000'
+    baseUrl: process.env.BASE_URL || 'http://localhost:3000',
+    firebaseAPIKey: 'AIzaSyDpMWdlw39y4cLqqk91rLPxkxSMCbYUImU' // from firebase web api key
   },
   // rootDir: '/my-app/'
   // srcDir: 'client/'
@@ -77,7 +78,7 @@ module.exports = {
   // },
   // router 客製化
   router: {
-    middleware: 'log', // meddleware 可以放在 每頁page 或是 layout / router 他會多次呼叫
+    // middleware: 'log', // meddleware 可以放在 每頁page 或是 layout / router 他會多次呼叫
     // base: '/my-app/' // 設定sub-domain
     // extendRoutes (routes, resolve) {
     //   routes.push({
