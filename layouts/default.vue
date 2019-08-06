@@ -13,6 +13,7 @@
 
 <script>
 export default {
+  // middleware: 'log',
   components: {
     headerItem: () => import('@/components/Navigation/TheHeader'),
     sideBarItem: () => import('@/components/Navigation/TheSidenav')

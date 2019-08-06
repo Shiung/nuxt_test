@@ -7,6 +7,7 @@
 <script>
 import { mapGetters } from 'vuex'
 export default {
+    middleware: 'log', // 可以加入每個內頁 或是直接加入 layout 處理
     components: {
        postlist: () => import('@/components/Posts/PostList')
     },

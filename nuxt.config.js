@@ -76,14 +76,15 @@ module.exports = {
   //   host: '0.0.0.0', // default: localhost
   // },
   // router 客製化
-  // router: {
-  //   // base: '/my-app/' // 設定sub-domain
-  //   // extendRoutes (routes, resolve) {
-  //   //   routes.push({
-  //   //     name: '',
-  //   //     path: '',
-  //   //     component: resolve(__dirname, '')
-  //   //   })
-  //   // }
-  // }
+  router: {
+    middleware: 'log', // meddleware 可以放在 每頁page 或是 layout / router 他會多次呼叫
+    // base: '/my-app/' // 設定sub-domain
+    // extendRoutes (routes, resolve) {
+    //   routes.push({
+    //     name: '',
+    //     path: '',
+    //     component: resolve(__dirname, '')
+    //   })
+    // }
+  }
 }
